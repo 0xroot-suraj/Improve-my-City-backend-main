@@ -1,0 +1,118 @@
+1. Authentication & Authorization
+
+Implement User Registration (username, email, mobile, address, password, etc.)
+Implement User Login and session management (JWT or cookies)
+Implement Admin Login with role-based access control
+Password Encryption using bcrypt or similar
+
+🧾 2. Complaint Management System
+👥 For Users:
+
+Submit New Complaint API
+- Fields: category, title, description, anonymity toggle, image/video upload, location (lat/long)
+- Auto-store timestamps and status (pending, in-progress, resolved)
+Fetch Complaints API
+- City Complaints: show all public complaints sorted by upvotes
+- My Complaints: show only logged-in user’s complaints, grouped by status
+Upvote Complaint API (prevent duplicate upvotes)
+Complaint Details API — show user info (or anonymous), media, timestamps, etc.
+
+🧑‍💼 For Admins:
+
+Fetch complaints by category and status
+Assign complaint to themselves (mark as taken)
+Update complaint status (pending → in-progress → resolved)
+Trigger email updates to users when:
+- Complaint is taken in-progress
+- Complaint is resolved
+
+🧭 3. Announcements / Notices System
+
+Admin can post new announcements
+Users can view all announcements
+Each announcement includes:
+- Admin name, designation, profile picture
+- Announcement body/text
+- Timestamp (auto)
+
+👍 4. Upvote & Sorting System
+
+Maintain a like/upvote collection or table
+- Fields: complaint_id, user_id
+Endpoints to add/remove upvote
+Sort complaints by most upvoted first (then newest)
+
+📍 5. Google Maps Integration
+
+Store latitude/longitude in complaints
+Endpoint to fetch complaints near user’s area (optional)
+Use Google Maps API key (geocoding if needed)
+
+📦 6. Media Handling (Images & Videos)
+
+Secure file uploads using:
+- Cloudinary, Firebase Storage, or AWS S3
+API for uploading and retrieving media URLs
+Validate file type and size limits
+
+📧 7. Email Notification System
+
+Integrate Nodemailer, SendGrid, or similar
+Triggers:
+- Complaint received confirmation
+- Complaint moved to in-progress
+- Complaint resolved
+- New announcement (optional)
+- Create HTML email templates for consistency
+
+👤 8. Profile Management
+For Users:
+
+Fetch profile info
+Edit profile info (username, contact, address, etc.)
+Upload/change profile picture
+
+For Admins:
+Same as users + designation field
+Validate admin-only access with middleware
+
+📊 9. Analytics & Dashboard Data
+
+Provide APIs for:
+Complaint counts (pending, in-progress, resolved)
+Most active users/admins
+Most common complaint categories
+Used for Admin Dashboard and Explore Mumbai tab in frontend
+
+⚙ 10. Database Design (Example)
+
+Use MongoDB, PostgreSQL, or Firebase Firestore
+Suggested Collections / Tables:
+users → user/admin details (role-based)
+complaints → all complaints with status and timestamps
+announcements → all notices
+upvotes → user upvote tracking
+media → uploaded file metadata (optional)
+email_logs → email triggers (optional)
+
+💾 11. Backend Framework Recommendation
+
+Node.js + Express.js 
+
+🧩 12. Security & Optimization
+
+JWT-based token validation middleware
+Input sanitization and file validation
+CORS configuration for frontend requests
+Centralized error handling and logging
+
+✅ In short, backend handles:
+
+Authentication (User/Admin)
+Complaint CRUD + upvotes
+Email notifications
+Announcement CRUD
+Profile management
+Dashboard analytics
+Media uploads + Google Maps integration
+Secure APIs + role-based access
